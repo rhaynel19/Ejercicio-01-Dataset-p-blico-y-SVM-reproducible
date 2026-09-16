@@ -1,6 +1,6 @@
 # Entrega individual INF-8239
 
-Repositorio reproducible de LAB01 y LAB02: auditoría de datos, comparación de datasets y experimento de clasificación con SVM. El repositorio local es la evidencia versionada; no hay remoto configurado todavía. Al publicar el proyecto, sustituir este texto por la URL pública.
+Repositorio reproducible de LAB01 y LAB02: auditoría de datos, comparación de datasets y experimento de clasificación con SVM. [Repositorio público en GitHub](https://github.com/rhaynel19/Ejercicio-01-Dataset-p-blico-y-SVM-reproducible).
 
 ## Pregunta y aprobación
 
