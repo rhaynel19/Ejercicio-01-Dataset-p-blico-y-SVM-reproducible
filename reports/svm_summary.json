@@ -1,0 +1,15 @@
+{
+  "baseline_f1_macro": 0.3870967741935484,
+  "base_svm_f1_macro": 0.9811507936507937,
+  "base_svm_roc_auc": 0.9950396825396826,
+  "tuned_svm_accuracy": 0.9824561403508771,
+  "tuned_svm_f1_macro": 0.9811507936507937,
+  "tuned_svm_precision_macro": 0.9811507936507937,
+  "tuned_svm_recall_macro": 0.9811507936507937,
+  "tuned_svm_roc_auc": 0.9976851851851851,
+  "best_params": {
+    "model__C": 10,
+    "model__gamma": 0.01
+  },
+  "test_size": 114
+}
