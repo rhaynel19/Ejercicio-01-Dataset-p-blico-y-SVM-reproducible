@@ -1,33 +1,33 @@
-# Model Card: TinyCNN para dígitos manuscritos
+# Model Card · Ensambles WDBC
 
 ## Identificación
 
-- **Autor:** Edwin Ramón José Nolasco
 - **Asignatura:** INF-8239 Ciencia de Datos II
-- **Unidad:** 02 · Procesamiento de Lenguaje Natural
-- **Código:** U02.E04
-- **Modelo:** TinyCNN, una capa convolucional 3×3 con ReLU, aplanado de características y salida softmax.
+- **Unidad:** 01 · Modelos avanzados, reducción dimensional y Green AI
+- **Código:** U01.E02
+- **Autor:** Edwin Ramón José Nolasco
+- **Dataset:** Wisconsin Diagnostic Breast Cancer (WDBC)
 
 ## Uso previsto
 
-Clasificación demostrativa de imágenes pequeñas de dígitos manuscritos (0–9). El modelo sirve para documentar un flujo reproducible de clasificación visual; no está destinado a decisiones sensibles ni a imágenes fuera de la distribución `load_digits`.
+Comparar modelos clásicos de clasificación binaria sobre variables numéricas de WDBC y documentar el compromiso entre desempeño, costo computacional y tamaño del artefacto. Es una actividad académica y no un sistema clínico.
 
 ## Datos y partición
 
-Se usa `sklearn.datasets.load_digits`, con 1,797 imágenes en escala de grises de 8×8 píxeles. La intensidad se normaliza a `[0, 1]`. La partición es 80/20, estratificada, con `random_state=42`; el conjunto de prueba se reserva hasta la evaluación final.
+Se usan 569 observaciones y 30 variables numéricas cargadas mediante `load_breast_cancer`. Se utiliza una partición 80/20 estratificada para cada repetición, con semillas 42, 43 y 44. El conjunto de prueba de cada repetición se mantiene separado durante el ajuste.
 
-## Resultados obtenidos
+## Modelos
 
-El baseline mayoritario obtuvo accuracy `0.1000` y F1 macro `0.0182`. La TinyCNN obtuvo accuracy `0.9139` y F1 macro `0.9127`, con 2,970 parámetros y aproximadamente 5 segundos de entrenamiento en CPU. Los valores exactos se conservan en `reports/metrics.json`; también se incluyen matriz de confusión, curvas de pérdida/accuracy y conteo de errores por clase.
+Se comparan SVM, SVM con PCA, Random Forest, Random Forest con PCA, HistGradientBoosting y HistGradientBoosting con PCA. El escalamiento y la reducción se incorporan en `Pipeline` cuando corresponde.
 
-## Limitaciones y riesgos
+## Métricas y Green AI
 
-El dataset es pequeño, está preprocesado y sus imágenes son mucho más limpias que entradas reales. La evaluación no garantiza desempeño con escritura, resolución, iluminación o dispositivos diferentes. Los errores entre clases visualmente parecidas deben inspeccionarse antes de concluir que el modelo generaliza.
+Se reportan F1 macro, accuracy, tiempo de entrenamiento, latencia de inferencia, tamaño serializado y cantidad aproximada de parámetros. La decisión se toma con la mediana de tres repeticiones y la frontera de Pareto de F1 frente a costo.
 
-## Decisión técnica
+## Limitaciones
 
-La CNN se conserva si mejora claramente al baseline y mantiene un costo de entrenamiento aceptable. Si el aumento de complejidad no aporta mejora, el baseline debe preferirse por simplicidad. El notebook registra esta decisión con métricas reproducibles.
+WDBC es un dataset pequeño y clásico; no representa necesariamente poblaciones actuales ni condiciones clínicas reales. Una alta puntuación no equivale a validación clínica. PCA puede reducir dimensionalidad, pero también puede eliminar información útil para algunos modelos. t-SNE sirve para exploración visual y no debe interpretarse como una evaluación del clasificador.
 
-## IA utilizada
+## Uso de IA
 
-Se utilizó asistencia de IA para proponer la estructura del experimento, revisar errores y sugerir pruebas. El estudiante verificó el código ejecutándolo en el entorno virtual, revisó las métricas y corrigió cualquier discrepancia antes de presentar resultados. No se usaron referencias ni resultados inventados.
+Se utilizó GitHub Copilot en VS Code para proponer estructura, explicar errores, sugerir pruebas y revisar la redacción. Se verificaron manualmente los datos, la partición, las seis configuraciones, las tres repeticiones, los CSV, las figuras, los modelos serializados y las pruebas. Se corrigieron errores de la actividad anterior, se reemplazó completamente la CNN por el flujo de ensambles solicitado y se comprobó la ejecución final con el entorno virtual.

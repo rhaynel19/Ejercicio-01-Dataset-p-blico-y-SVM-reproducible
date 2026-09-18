@@ -1,0 +1,29 @@
+{
+  "dataset": "Wisconsin Diagnostic Breast Cancer (sklearn.load_breast_cancer)",
+  "samples": 569,
+  "features": 30,
+  "repetitions": [
+    42,
+    43,
+    44
+  ],
+  "split": "80/20 stratified per repetition",
+  "best_by_f1_macro": {
+    "configuration": "svm",
+    "repetition": 43.0,
+    "f1_macro": 0.9811507936507937,
+    "accuracy": 0.9824561403508771,
+    "train_seconds": 0.024996899999678135,
+    "inference_ms_per_sample": 0.08874298241847244,
+    "model_size_kb": 28.529296875,
+    "parameters": 0.0
+  },
+  "configurations": [
+    "svm",
+    "svm_pca",
+    "random_forest",
+    "random_forest_pca",
+    "boosting",
+    "boosting_pca"
+  ]
+}
